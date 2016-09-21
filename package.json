@@ -7,9 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build",
+    "build": "ember build && ember fastboot:build",
     "start": "ember server",
-    "test": "ember try:each"
+    "test": "ember try:testall && node run-fastboot-tests.js"
   },
   "repository": "",
   "engines": {
@@ -34,6 +34,8 @@
     "ember-data": "^2.6.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
+    "ember-cli-fastboot": "0.5.0",
+    "ember-fastboot-test-helpers": "0.1.1",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "loader.js": "^4.0.1"
