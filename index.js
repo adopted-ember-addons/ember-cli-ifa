@@ -20,7 +20,7 @@ module.exports = {
 
     let assetFileName = null;
     for (let i = 0; i < totalFiles; i++) {
-      if (files[i].match(/^assetMap-/i)) {
+      if (files[i].match(/^assetMap/i)) {
         assetFileName = files[i];
         break;
       }
