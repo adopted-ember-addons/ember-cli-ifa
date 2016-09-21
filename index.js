@@ -26,14 +26,16 @@ module.exports = {
       }
     }
 
-    fs.writeFileSync(
-      indexFilePath,
-      indexFile.replace(/__asset_map_placeholder__/, '/assets/' + assetFileName)
-    );
+    if (assetFileName) {
+      fs.writeFileSync(
+        indexFilePath,
+        indexFile.replace(/__asset_map_placeholder__/, '/assets/' + assetFileName)
+      );
+    }
   },
 
-  contentFor(type, config, content) {
-    if (type === 'head-footer') {
+  contentFor(type, config) {
+    if (type === 'head-footer' && config.ifa && config.ifa.enabled) {
       return '<script>var __assetMapFilename__ = "__asset_map_placeholder__";</script>';
     }
   }
