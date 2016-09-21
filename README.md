@@ -1,6 +1,20 @@
-# Ember-cli-inject-fingerprinted-assetmap
+[![Build Status](https://travis-ci.org/RuslanZavacky/ember-cli-ifa.svg?branch=master)](https://travis-ci.org/RuslanZavacky/ember-cli-ifa)
+[![Code Climate](https://codeclimate.com/github/RuslanZavacky/ember-cli-ifa/badges/gpa.svg)](https://codeclimate.com/github/RuslanZavacky/ember-cli-ifa)
 
-This README outlines the details of collaborating on this Ember addon.
+# Ember-cli-ifa
+
+Inject fingerprinted assetMap.json file into your code and provide initializer, service, and helper to
+dynamically reference fingerprinted assets.
+
+## Configuration
+
+Enable addon in `environment.js` for specific environment.
+
+```
+ifa: {
+  enabled: true
+}
+```
 
 ## Installation
 
