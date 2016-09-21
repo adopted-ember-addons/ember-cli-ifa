@@ -3,7 +3,7 @@
 
 # Ember-cli-ifa
 
-Inject fingerprinted assetMap.json file into your code and provide initializer, service, and helper to
+Inject fingerprinted assetMap.json file into your app and provide initializer, service, and helper to
 dynamically reference fingerprinted assets.
 
 ## Configuration
@@ -14,6 +14,36 @@ Enable addon in `environment.js` for specific environment.
 ifa: {
   enabled: true
 }
+```
+
+## Usage
+
+### asset-map helper
+
+If `name` is `tomster-under-construction`:
+ 
+```
+<img src={{asset-map (concat "assets/" name ".png")}} />
+```
+
+then it will generate something like `assets/tomster-under-construction-da524c8bc9283f759ae640b68db81f24.png` base on assetMap.json.
+
+### asset-map service
+
+```javascript
+import Ember from 'ember';
+import service from 'ember-service/inject';
+
+export default Ember.Component.extend({
+  assetMap: service('asset-map'),
+
+  key: null, // key passed as 'tomster-under-construction'
+
+  // result will be assets/tomster-under-construction-da524c8bc9283f759ae640b68db81f24.png
+  image: computed('key', function() {
+    return this.get('assetMap').resolve(`assets/${this.get('key')}.png`);
+  })
+});
 ```
 
 ## Installation

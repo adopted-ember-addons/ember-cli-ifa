@@ -1,16 +1,23 @@
-var moduleForFastboot = require('ember-fastboot-test-helpers').moduleForFastboot;
+var jsdom   = require("jsdom").jsdom;
+var FastBoot = require('fastboot');
 
-moduleForFastboot('Basic rendering');
+var app = new FastBoot({
+  distPath: 'dist'
+});
 
-QUnit.test('it renders', function(assert) {
+QUnit.test('it renders fingerprinted image on server', function (assert) {
   assert.expect(2);
 
-  return this.visit('/').then(function(data) {
-    var statusCode = data[0];
-    var headers = data[1];
-    // var document = data[2];
+  return app.visit('/')
+    .then(result => {
+      assert.equal(200, result.statusCode);
+      return result.html();
+    })
+    .then(html => {
+    let document = jsdom(html).defaultView.document;
 
-    assert.equal(statusCode, 200, 'Request is successful');
-    assert.equal(headers["content-type"], "text/html; charset=utf-8", 'Content type is correct');
-  }.bind(this));
+    var img = document.getElementsByTagName('img')[0].getAttribute('src');
+
+    assert.equal(img, 'assets/tomster-under-construction-da524c8bc9283f759ae640b68db81f24.png');
+  });
 });
