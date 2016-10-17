@@ -10,7 +10,13 @@ module.exports = {
     return false;
   },
 
+  included: function(app) {
+    this.app = app;
+    this._super.included.apply(this, arguments);
+  },
+
   postBuild: function (build) {
+    let fingerprintPrepend = '/';
     let indexFilePath = build.directory + '/index.html';
     let indexFileBuffer = fs.readFileSync(indexFilePath);
     let indexFile = indexFileBuffer.toString('utf8');
@@ -26,10 +32,16 @@ module.exports = {
       }
     }
 
+    // Prepend the URL of the assetMap with the location defined in fingerprint
+    // options.
+    if (this.app && this.app.options && this.app.options.fingerprint) {
+      fingerprintPrepend = this.app.options.fingerprint.prepend;
+    }
+
     if (assetFileName) {
       fs.writeFileSync(
         indexFilePath,
-        indexFile.replace(/__asset_map_placeholder__/, '/assets/' + assetFileName)
+        indexFile.replace(/__asset_map_placeholder__/, fingerprintPrepend + 'assets/' + assetFileName)
       );
     }
   },
