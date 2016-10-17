@@ -46,6 +46,27 @@ export default Ember.Component.extend({
 });
 ```
 
+### Storing assets in a sub-directory
+
+If `prepend` option is added in fingerprint configuration block, it will be prepended into
+generated asset path in the index.html.
+
+```
+// ember-cli-build.js
+// ...
+var app = new EmberApp(defaults, {
+  fingerprint: {
+    prepend: '/blog/'
+  }
+});
+```
+
+```
+<!-- index.html -->
+<script>var __assetMapFilename__ = "/blog/assets/assetMap-<hash>.json";</script>
+```
+
+
 ## Installation
 
 * `git clone` this repository
