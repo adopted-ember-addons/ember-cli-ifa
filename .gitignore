@@ -2,7 +2,6 @@
 
 # compiled output
 /dist
-/fastboot-dist
 /tmp
 
 # dependencies
@@ -14,7 +13,5 @@
 /connect.lock
 /coverage/*
 /libpeerconnection.log
-npm-debug.log
+npm-debug.log*
 testem.log
-
-.idea/
