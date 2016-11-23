@@ -10,7 +10,7 @@ dynamically reference fingerprinted assets.
 
 Enable addon in `environment.js` for specific environment.
 
-```
+```javascript
 module.exports = function(environment) {
   var ENV = {
     ...
