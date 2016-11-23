@@ -11,9 +11,14 @@ dynamically reference fingerprinted assets.
 Enable addon in `environment.js` for specific environment.
 
 ```
-ifa: {
-  enabled: true
-}
+module.exports = function(environment) {
+  var ENV = {
+    ...
+    ifa: {
+      enabled: true
+    }
+    ...
+  };
 ```
 
 ## Usage
@@ -51,7 +56,7 @@ export default Ember.Component.extend({
 If `prepend` option is added in fingerprint configuration block, it will be prepended into
 generated asset path in the index.html.
 
-```
+```javascript
 // ember-cli-build.js
 // ...
 var app = new EmberApp(defaults, {
@@ -61,11 +66,7 @@ var app = new EmberApp(defaults, {
 });
 ```
 
-```
-<!-- index.html -->
-<script>var __assetMapFilename__ = "/blog/assets/assetMap-<hash>.json";</script>
-```
-
+`/blog` will be prepended to the assetMap file path in the index.html.
 
 ## Installation
 
