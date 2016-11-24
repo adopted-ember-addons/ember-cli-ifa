@@ -21,13 +21,23 @@ module.exports = function(environment) {
   };
 ```
 
+Configure fingerprinting in `ember-cli-build.js`. Refer to the documentation of ember-cli for [asset-compilation](https://ember-cli.com/asset-compilation#fingerprinting-and-cdn-urls)
+
+```javascript
+fingerprint: {
+  enabled: true, // set to true only in required environments
+  generateAssetMap: true,
+  fingerprintAssetMap: true
+}
+```
+
 ## Usage
 
 ### asset-map helper
 
 If `name` is `tomster-under-construction`:
  
-```
+```html
 <img src={{asset-map (concat "assets/" name ".png")}} />
 ```
 
@@ -36,10 +46,10 @@ then it will generate something like `assets/tomster-under-construction-da524c8b
 ### asset-map service
 
 ```javascript
-import Ember from 'ember';
+import Component from 'ember-component';
 import service from 'ember-service/inject';
 
-export default Ember.Component.extend({
+export default Component.extend({
   assetMap: service('asset-map'),
 
   key: null, // key passed as 'tomster-under-construction'
