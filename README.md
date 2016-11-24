@@ -6,6 +6,12 @@
 Inject fingerprinted assetMap.json file into your app and provide initializer, service, and helper to
 dynamically reference fingerprinted assets.
 
+## Installation
+
+```bash
+ember install ember-cli-ifa
+```
+
 ## Configuration
 
 Enable addon in `environment.js` for specific environment.
@@ -77,26 +83,3 @@ var app = new EmberApp(defaults, {
 ```
 
 `/blog` will be prepended to the assetMap file path in the index.html.
-
-## Installation
-
-* `git clone` this repository
-* `npm install`
-* `bower install`
-
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
