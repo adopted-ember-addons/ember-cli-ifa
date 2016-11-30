@@ -4,7 +4,7 @@
 module.exports = function(/* environment, appConfig */) {
   return {
     ifa: {
-      enabled: true
+      enabled: false
     }
   };
 };
