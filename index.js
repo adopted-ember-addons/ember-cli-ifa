@@ -38,17 +38,19 @@ module.exports = {
       fingerprintPrepend = this.app.options.fingerprint.prepend;
     }
 
+    let assetMapContent = null;
     if (assetFileName) {
-      fs.writeFileSync(
-        indexFilePath,
-        indexFile.replace(/__asset_map_placeholder__/, fingerprintPrepend + 'assets/' + assetFileName)
-      );
+      assetMapContent = `"${fingerprintPrepend + 'assets/' + assetFileName}"`;
     }
+    fs.writeFileSync(
+      indexFilePath,
+      indexFile.replace(/__asset_map_placeholder__/, assetMapContent)
+    );
   },
 
   contentFor(type, config) {
     if (type === 'head-footer' && config.ifa && config.ifa.enabled) {
-      return '<script>var __assetMapFilename__ = "__asset_map_placeholder__";</script>';
+      return '<script>var __assetMapFilename__ = __asset_map_placeholder__;</script>';
     }
   }
 };
