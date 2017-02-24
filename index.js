@@ -18,8 +18,10 @@ module.exports = {
   postBuild: function (build) {
     let fingerprintPrepend = '/';
     let indexFilePath = build.directory + '/index.html';
-    let indexFileBuffer = fs.readFileSync(indexFilePath);
-    let indexFile = indexFileBuffer.toString('utf8');
+    let testIndexFilePath = build.directory + '/tests/index.html';
+
+    let indexFile = fs.readFileSync(indexFilePath, {encoding: 'utf-8'});
+    let testIndexFile = fs.readFileSync(testIndexFilePath, {encoding: 'utf-8'});
 
     let files = fs.readdirSync(build.directory + '/assets');
     let totalFiles = files.length;
@@ -39,13 +41,13 @@ module.exports = {
     }
 
     let assetMapContent = null;
+    
     if (assetFileName) {
       assetMapContent = `"${fingerprintPrepend + 'assets/' + assetFileName}"`;
     }
-    fs.writeFileSync(
-      indexFilePath,
-      indexFile.replace(/__asset_map_placeholder__/, assetMapContent)
-    );
+    
+    fs.writeFileSync(indexFilePath, indexFile.replace(/__asset_map_placeholder__/, assetMapContent));
+    fs.writeFileSync(testIndexFilePath, testIndexFile.replace(/__asset_map_placeholder__/, assetMapContent));
   },
 
   contentFor(type, config) {
