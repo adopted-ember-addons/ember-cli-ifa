@@ -38,7 +38,7 @@ module.exports = {
       fingerprintPrepend = this.app.options.fingerprint.prepend;
     }
 
-    let assetMapContent = 'false';
+    let assetMapContent = null;
     if (assetFileName) {
       assetMapContent = `"${fingerprintPrepend + 'assets/' + assetFileName}"`;
     }
