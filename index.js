@@ -44,22 +44,34 @@ module.exports = {
       fingerprintPrepend = this.app.options.fingerprint.prepend;
     }
 
+    let assetMapFileName = null;
     let assetMapContent = null;
 
     if (assetFileName) {
-      assetMapContent = `"${fingerprintPrepend + 'assets/' + assetFileName}"`;
+      assetMapFileName = `"${fingerprintPrepend}assets/${assetFileName}"`;
+
+      const assetMapFilePath = `${build.directory}/assets/${assetFileName}`
+      assetMapContent = fs.readFileSync(assetMapFilePath, 'utf8')
     }
 
-    fs.writeFileSync(indexFilePath, indexFile.replace(/__asset_map_placeholder__/, assetMapContent));
+
+
+    fs.writeFileSync(indexFilePath, indexFile.replace(/__asset_map_placeholder__/, assetMapFileName));
+
+    fs.writeFileSync(indexFilePath, indexFile.replace(/__asset_map_content_placeholder__/, assetMapContent));
 
     if (testIndexFile) {
-      fs.writeFileSync(testIndexFilePath, testIndexFile.replace(/__asset_map_placeholder__/, assetMapContent));
+      fs.writeFileSync(testIndexFilePath, testIndexFile.replace(/__asset_map_placeholder__/, assetMapFileName));
     }
   },
 
   contentFor(type, config) {
     if (type === 'head-footer' && config.ifa && config.ifa.enabled) {
-      return '<script>var __assetMapFilename__ = __asset_map_placeholder__;</script>';
+      if (config.ifa.inlined) {
+        return '<script>var __assetMapContent__ = __asset_map_content_placeholder__;</script>';
+      } else {
+        return '<script>var __assetMapFilename__ = __asset_map_placeholder__;</script>';
+      }
     }
   }
 };

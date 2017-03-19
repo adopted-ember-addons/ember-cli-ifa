@@ -21,7 +21,8 @@ module.exports = function(environment) {
   var ENV = {
     ...
     ifa: {
-      enabled: true
+      enabled: true,
+      [inlined: true] // If you wish to inline/embed the asset map into the index.html
     }
     ...
   };

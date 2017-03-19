@@ -6,6 +6,7 @@ import AssetMap from '../services/asset-map';
 export function initialize(app) {
   app.deferReadiness();
 
+  let assetMapContent = window && window.__assetMapContent__;
   let assetMapFile = window && window.__assetMapFilename__;
 
   if (!assetMapFile) {
@@ -14,9 +15,15 @@ export function initialize(app) {
     return;
   }
 
-  const promise = new RSVP.Promise((resolve, reject) => {
-    $.getJSON(assetMapFile, resolve).fail(reject);
-  });
+  if (assetMapContent !== undefined) {
+    const promise = new RSVP.Promise((resolve, reject) => {
+      resolve(assetMapContent)
+    })
+  } else {
+    const promise = new RSVP.Promise((resolve, reject) => {
+      $.getJSON(assetMapFile, resolve).fail(reject);
+    });
+  }
 
   promise.then((map = {}) => {
     AssetMap.reopen({
