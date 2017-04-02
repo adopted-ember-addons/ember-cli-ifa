@@ -7,7 +7,8 @@ module.exports = function(defaults) {
       enabled: true,
       extensions: ['png'],
       generateAssetMap: true,
-      fingerprintAssetMap: true
+      fingerprintAssetMap: true,
+      prepend: '/'
     }
   });
 
