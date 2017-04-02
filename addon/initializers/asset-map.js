@@ -4,7 +4,13 @@ import $ from 'jquery';
 import AssetMap from '../services/asset-map';
 
 export function initialize(app) {
-  let config = app.__container__.lookupFactory('config:environment');
+  let config;
+
+  if (app.__container__.factoryFor) {
+    config = app.__container__.factoryFor('config:environment').class;
+  } else {
+    config = app.__container__.lookupFactory('config:environment');
+  }
 
   let assetMapFile = window && window.__assetMapPlaceholder__;
 
