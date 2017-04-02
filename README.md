@@ -6,6 +6,17 @@
 Inject fingerprinted assetMap.json file into your app and provide initializer, service, and helper to
 dynamically reference fingerprinted assets.
 
+**When to use this addon?**
+
+1. If you have dynamic asset file names returned from API and/or you build paths based on several properties.
+1. If you can't put your asset filemames into css or to have path as static in your .js files.
+1. If you build your image/asset paths in a dynamic way, eg.
+```js
+imagePath: computed(function() {
+  return this.get('assetMap').resolve(`${this.get('image')}.png`);
+})
+```
+
 ## Installation
 
 ```bash
@@ -21,7 +32,8 @@ module.exports = function(environment) {
   var ENV = {
     ...
     ifa: {
-      enabled: true
+      enabled: true,
+      inline: false,
     }
     ...
   };
@@ -83,3 +95,28 @@ var app = new EmberApp(defaults, {
 ```
 
 `/blog` will be prepended to the assetMap file path in the index.html.
+
+
+### inline option
+
+If `inline: true` is specified in config, contents of assetMap file will be inline into index.html. 
+
+```html
+<script>
+...
+
+var __assetMapPlaceholder__ = {
+  "assets": {
+    "assets/assetMap.json": "assets/assetMap-0a0447ba419421fa257963a718324fa8.json",
+    "assets/failed.png": "assets/failed-836936cf32381ff14d191d7b10be9a89.png",
+    "assets/passed.png": "assets/passed-b8506cbc195c8b9db541745aee267c48.png",
+    "assets/tomster-under-construction.png": "assets/tomster-under-construction-da524c8bc9283f759ae640b68db81f24.png"
+  },
+  "prepend": ""
+};
+</script>
+
+...
+```
+
+This might save one request to assetMap.json, but will increase overall size of `index.html` file, so use carefully.

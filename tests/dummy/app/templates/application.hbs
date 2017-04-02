@@ -1,1 +1,22 @@
-<img src="assets/tomster-under-construction.png" />
+<div style="display: flex; flex: 1 1 auto; align-items: center; justify-content: center;">
+  <div>
+    <img style="max-height: 150px;" src="assets/tomster-under-construction.png" />
+    <div style="display: flex; justify-content: center;">
+      Template replace
+    </div>
+  </div>
+
+  <div>
+    <img style="max-height: 150px;" src={{imagePath}} />
+    <div style="display: flex; justify-content: center;">
+      Asset Map Service
+    </div>
+  </div>
+
+  <div>
+    <img style="max-height: 150px;" src={{asset-map (concat image '.png')}} />
+    <div style="display: flex; justify-content: center;">
+      Asset Map Helper
+    </div>
+  </div>
+</div>
