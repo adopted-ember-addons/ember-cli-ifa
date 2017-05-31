@@ -39,6 +39,24 @@ module.exports = function(environment) {
   };
 ```
 
+In case you use s3 and manifest module for ember-cli-deploy, update there configurations in `config/deploy.js`.
+
+```javascript
+module.exports = function(environment) {
+  var ENV = {
+    ...
+    s3: {
+      filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,json}', // add 'json'
+      ...
+    },
+    manifest: {
+      filePattern: "**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,json}" // add 'json'
+      ...
+    }
+    ...
+  };
+```
+
 Configure fingerprinting in `ember-cli-build.js`. Refer to the documentation of ember-cli for [asset-compilation](https://ember-cli.com/asset-compilation#fingerprinting-and-cdn-urls)
 
 ```javascript
