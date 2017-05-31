@@ -1,3 +1,6 @@
+# 0.5.0
+- [ENHANCEMENT] Ability to include asset map contents at build time (@simonihmig)
+
 # 0.4.0
 - [ENHANCEMENT] If there is no asset map file, set variable (__assetMapFilename__) to null (@andreasschacht)
 - [BUG FIX] Replace __asset_map_placeholder__ in tests/index.html as well (@trek)
