@@ -1,3 +1,10 @@
+# 0.5.2 
+- [BUG FIX] Add missing .class in lookupFactory
+- [ENHANCEMENT] Safer deployment configuration override
+
+# 0.5.1
+- [ENHANCEMENT] Fix deprecation for lookupFactory
+
 # 0.5.0
 - [ENHANCEMENT] Ability to include asset map contents at build time (@simonihmig)
 
