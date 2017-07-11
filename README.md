@@ -39,20 +39,27 @@ module.exports = function(environment) {
   };
 ```
 
-In case you use s3 and manifest module for ember-cli-deploy, update there configurations in `config/deploy.js`.
+In case you use s3 and manifest module for ember-cli-deploy, update there configurations in `config/deploy.js`
+to include `json` as a valid file.
 
 ```javascript
 module.exports = function(environment) {
   var ENV = {
     ...
     s3: {
-      filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,json}', // add 'json'
+      filePattern: function(context, pluginHelper) {
+        let filePattern = pluginHelper.readConfigDefault('filePattern');
+        return filePattern.replace('}', ',json}');
+      },
       ...
     },
     manifest: {
-      filePattern: "**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,json}" // add 'json'
+      filePattern: function(context, pluginHelper) {
+        let filePattern = pluginHelper.readConfigDefault('filePattern');
+        return filePattern.replace('}', ',json}');
+      },
       ...
-    }
+    },
     ...
   };
 ```
