@@ -7,7 +7,7 @@ export function initialize(app) {
   const container = app.__container__;
   let config;
   if(container.factoryFor) {
-    config = container.factoryFor('config:environment');
+    config = container.factoryFor('config:environment').class;
   } else {
     config = container.lookupFactory('config:environment');
   }
