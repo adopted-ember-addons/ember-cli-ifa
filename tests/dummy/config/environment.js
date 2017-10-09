@@ -22,8 +22,9 @@ module.exports = function(environment) {
       // when it is created
     },
     ifa: {
-      enabled: true
-    }
+      enabled: true,
+      inline: false
+    },
   };
 
   if (environment === 'development') {

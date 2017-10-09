@@ -3,18 +3,6 @@
 
 let fs = require('fs');
 
-const findRoot = (current) => {
-  let app;
-
-  // Keep iterating upward until we don't have a grandparent.
-  // Has to do this grandparent check because at some point we hit the project.
-  do {
-    app = current.app || app;
-  } while (current.parent && current.parent.parent && (current = current.parent));
-
-  return app;
-};
-
 module.exports = {
   name: 'ember-cli-ifa',
 
@@ -22,16 +10,11 @@ module.exports = {
     return false;
   },
 
-  included(app) {
-    this.app = findRoot(this);
-    this._super.included.apply(this, arguments);
-  },
-
   postBuild(build) {
     this._super.included.apply(this, arguments);
 
     const env  = process.env.EMBER_ENV;
-    const ifaConfig = this.app.project.config(env).ifa;
+    const ifaConfig = this.project.config(env).ifa;
 
     if (!ifaConfig.enabled) {
       return;
