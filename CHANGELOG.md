@@ -1,3 +1,7 @@
+# 0.6.0 
+- [ENHANCEMENT] Add is enabled by default
+- [ENHANCEMENT] Use meta tag to pass asset file name into the asset-map service to avoid CSP issue with script tag.
+
 # 0.5.2 
 - [BUG FIX] Add missing .class in lookupFactory
 - [ENHANCEMENT] Safer deployment configuration override
