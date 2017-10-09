@@ -15,6 +15,10 @@ export function initialize(app) {
   let assetMapFile = window && window.__assetMapPlaceholder__;
 
   if (!assetMapFile) {
+    assetMapFile = decodeURIComponent(document.querySelector('[property="ifa:placeholder"]').getAttribute('content'));
+  }
+
+  if (!assetMapFile) {
     app.register('service:asset-map', AssetMap);
     return;
   }

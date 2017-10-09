@@ -54,10 +54,9 @@ module.exports = {
 
     if (ifaConfig.inline && fs.existsSync(assetFileNamePath)) {
       assetMapPlaceholder = fs.readFileSync(assetFileNamePath, {encoding: 'utf-8'});
-
     } else {
       if (assetFileName) {
-        assetMapPlaceholder = `"${fingerprintPrepend}assets/${assetFileName}"`;
+        assetMapPlaceholder = encodeURIComponent(`${fingerprintPrepend}assets/${assetFileName}`);
       }
     }
 
@@ -69,7 +68,9 @@ module.exports = {
   },
 
   contentFor(type, config) {
-    if (type === 'head-footer' && config.ifa && config.ifa.enabled) {
+    if (type === 'head' && config.ifa && config.ifa.enabled && !config.ifa.inline) {
+      return '<meta property="ifa:placeholder" content="__asset_map_placeholder__">';
+    } else if (type === 'head-footer' && config.ifa && config.ifa.enabled && config.ifa.inline) {
       return '<script>var __assetMapPlaceholder__ = __asset_map_placeholder__;</script>';
     }
   }
