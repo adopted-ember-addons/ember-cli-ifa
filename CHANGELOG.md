@@ -1,3 +1,6 @@
+# 0.6.1 
+- [FIX] If ifa:placeholder meta tag is missing, do not fail with error
+
 # 0.6.0 
 - [ENHANCEMENT] Add is enabled by default
 - [ENHANCEMENT] Use meta tag to pass asset file name into the asset-map service to avoid CSP issue with script tag.
