@@ -15,7 +15,11 @@ export function initialize(app) {
   let assetMapFile = window && window.__assetMapPlaceholder__;
 
   if (!assetMapFile) {
-    assetMapFile = decodeURIComponent(document.querySelector('[property="ifa:placeholder"]').getAttribute('content'));
+    let ifaPlaceholder = document.querySelector('[property="ifa:placeholder"]');
+
+    if (ifaPlaceholder) {
+      assetMapFile = decodeURIComponent(ifaPlaceholder.getAttribute('content'));
+    }
   }
 
   if (!assetMapFile) {
