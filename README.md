@@ -3,6 +3,8 @@
 
 # Ember-cli-ifa
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/RuslanZavacky/ember-cli-ifa.svg)](https://greenkeeper.io/)
+
 Inject fingerprinted assetMap.json file into your app and provide initializer, service, and helper to
 dynamically reference fingerprinted assets.
 
