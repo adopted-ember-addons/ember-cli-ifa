@@ -4,6 +4,10 @@ import $ from 'jquery';
 import AssetMap from '../services/asset-map';
 
 export function initialize(app) {
+  if (typeof FastBoot !== 'undefined') {
+    return;
+  }
+
   const container = app.__container__;
   let config;
   if(container.factoryFor) {
