@@ -1,4 +1,3 @@
-/* jshint node: true */
 'use strict';
 
 let fs = require('fs');
