@@ -1,8 +1,9 @@
-import Ember from 'ember';
-import service from 'ember-service/inject'
+import Helper from '@ember/component/helper';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 
-export default Ember.Helper.extend({
-  assetMap: service('asset-map'),
+export default Helper.extend({
+  assetMap: service(),
 
   compute(params) {
     const file = params[0] || "";
@@ -11,6 +12,6 @@ export default Ember.Helper.extend({
       return;
     }
 
-    return this.get('assetMap').resolve(file);
+    return get(this, 'assetMap').resolve(file);
   }
 });

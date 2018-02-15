@@ -1,14 +1,17 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import { computed, get } from '@ember/object';
 
-export default Ember.Service.extend({
+export default Service.extend({
   enabled: false,
-  map: {},
+  map: computed(function() {
+    return {};
+  }),
   prepend: '/',
 
   resolve(name) {
-    const map = this.get('map') || {};
-    const prepend = this.get('prepend');
-    const enabled = this.get('enabled');
+    const map = get(this, 'map') || {};
+    const prepend = get(this, 'prepend');
+    const enabled = get(this, 'enabled');
     const assetName = enabled ? map[name] : name;
 
     return `${prepend}${assetName}`;

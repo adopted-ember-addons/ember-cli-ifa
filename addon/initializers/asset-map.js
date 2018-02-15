@@ -1,33 +1,21 @@
-/* global window, __assetMapPlaceholder__ */
 import RSVP from 'rsvp';
 import $ from 'jquery';
 import AssetMap from '../services/asset-map';
+import { typeOf as getTypeOf } from '@ember/utils';
+import getAssetMapData from 'ember-cli-ifa/utils/get-asset-map-data';
 
 export function initialize(app) {
-  const container = app.__container__;
-  let config;
-  if(container.factoryFor) {
-    config = container.factoryFor('config:environment').class;
-  } else {
-    config = container.lookupFactory('config:environment');
-  }
+  let assetMapFile = getAssetMapData();
 
-  let assetMapFile = window && window.__assetMapPlaceholder__;
+  // This is split out like this, in order to prevent this from being accidentally replaced
+  let replacementPath = ['__', 'asset_map_placeholder', '__'].join('');
 
-  if (!assetMapFile) {
-    let ifaPlaceholder = document.querySelector('[property="ifa:placeholder"]');
-
-    if (ifaPlaceholder) {
-      assetMapFile = decodeURIComponent(ifaPlaceholder.getAttribute('content'));
-    }
-  }
-
-  if (!assetMapFile) {
+  if (!assetMapFile || assetMapFile === replacementPath) {
     app.register('service:asset-map', AssetMap);
     return;
   }
 
-  if (config.ifa.inline) {
+  if (getTypeOf(assetMapFile) === 'object' && assetMapFile.assets) {
     AssetMap.reopen({
       map: assetMapFile.assets,
       prepend: assetMapFile.prepend,
@@ -37,8 +25,15 @@ export function initialize(app) {
   } else {
     app.deferReadiness();
 
+    let { ajax } = $;
     const promise = new RSVP.Promise((resolve, reject) => {
-      $.getJSON(assetMapFile, resolve).fail(reject);
+      let options = {
+        type: 'GET',
+        dataType: 'json',
+        success: resolve,
+        error: reject
+      };
+      ajax(assetMapFile, options);
     });
 
     promise.then((map = {}) => {
