@@ -1,3 +1,5 @@
+/* global global, QUnit */
+/* eslint-env node */
 global.QUnit = require('qunitjs');
 
 // adds test reporting

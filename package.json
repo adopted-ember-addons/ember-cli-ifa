@@ -18,7 +18,7 @@
     "url": "http://github.com/RuslanZavacky/ember-cli-ifa.git"
   },
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 6"
   },
   "author": {
     "name": "Ruslan Zavacky",
@@ -45,8 +45,11 @@
     "ember-export-application-global": "^2.0.0",
     "ember-fastboot-test-helpers": "^0.2.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.5.0",
     "ember-source": "^3.0.0",
+    "ember-source-channel-url": "^1.0.1",
+    "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.3",
     "eslint-plugin-node": "^6.0.0",
     "fastboot": "^1.1.3",
