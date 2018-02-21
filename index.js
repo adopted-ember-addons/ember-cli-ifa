@@ -7,7 +7,7 @@ module.exports = {
   name: 'ember-cli-ifa',
 
   isDevelopingAddon() {
-    return true;
+    return false;
   },
 
   included(app) {
@@ -84,6 +84,8 @@ module.exports = {
       assetMapPlaceholder = `"${fingerprintPrepend}assets/${assetFileName}"`;
     }
 
-    fs.writeFileSync(vendorJsFilePath, vendorJsFile.replace(/'__asset_map_placeholder__'/, assetMapPlaceholder));
+    // When minifiying, '__asset_map_placeholder__' may be re-written into "__asset_map_placeholder__"
+    // So we need to replace both variants
+    fs.writeFileSync(vendorJsFilePath, vendorJsFile.replace(/('|")(__asset_map_placeholder__)('|")/, assetMapPlaceholder));
   }
 };

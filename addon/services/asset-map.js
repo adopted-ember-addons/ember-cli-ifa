@@ -3,9 +3,7 @@ import { computed, get } from '@ember/object';
 
 export default Service.extend({
   enabled: false,
-  map: computed(function() {
-    return {};
-  }),
+  map: computed(() => ({})),
   prepend: '/',
 
   resolve(name) {
