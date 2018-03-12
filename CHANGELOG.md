@@ -1,3 +1,7 @@
+# 0.7.0 
+- [ENHANCEMENT] Upgrade to Ember 3.0 (@mydea)
+- [ENHANCEMENT] Tests passing (@mydea)
+
 # 0.6.1 
 - [FIX] If ifa:placeholder meta tag is missing, do not fail with error
 
