@@ -74,6 +74,9 @@ fingerprint: {
 }
 ```
 
+Note that if you use fastboot, this addon is automatically forced into `inline: true` mode. 
+This is necessary, as otherwise fastboot could not easily access that data.
+
 ## Usage
 
 ### asset-map helper

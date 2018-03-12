@@ -1,14 +1,14 @@
-/*jshint node:true*/
-/* global require, module */
-var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+'use strict';
+
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  var app = new EmberAddon(defaults, {
+  let app = new EmberAddon(defaults, {
     fingerprint: {
       enabled: true,
       extensions: ['png'],
       generateAssetMap: true,
-      fingerprintAssetMap: true
+      fingerprintAssetMap: false
     }
   });
 
