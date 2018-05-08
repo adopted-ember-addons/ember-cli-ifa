@@ -1,7 +1,9 @@
 'use strict';
 
-let fs = require('fs');
-let path = require('path');
+const fs = require('fs');
+const path = require('path');
+
+const DEFAULT_VENDOR_REGEX = /^vendor(-(\w|\d)*)?\.js$/i;
 
 module.exports = {
   name: 'ember-cli-ifa',
@@ -17,7 +19,7 @@ module.exports = {
     // By default, it looks for a `vendor.js` or `vendor-XXXXX.js` file
     // It looks for that file in the `/assets` folder
     let options = app.options['ember-cli-ifa'] || {};
-    this._replacePathRegex = options.replacePathRegex || /^vendor(-(\w|\d)*)?\.js$/i;
+    this._replacePathRegex = options.replacePathRegex || DEFAULT_VENDOR_REGEX;
   },
 
   treeForFastBoot: function(tree) {
@@ -42,16 +44,16 @@ module.exports = {
 
     let assetFileName = null;
     for (let i = 0; i < totalFiles; i++) {
-      if (files[i].match(/^assetMap/i)) {
+      if (/^assetMap/i.test(files[i])) {
         assetFileName = files[i];
         break;
       }
     }
 
-    let replacePathRegex = this._replacePathRegex;
+    let replacePathRegex = this._replacePathRegex || DEFAULT_VENDOR_REGEX;
     let vendorJsFileName = null;
     for (let i = 0; i < totalFiles; i++) {
-      if (files[i].match(replacePathRegex)) {
+      if (replacePathRegex.test(files[i])) {
         vendorJsFileName = files[i];
         break;
       }
