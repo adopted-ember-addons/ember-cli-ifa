@@ -5,7 +5,11 @@ import { typeOf as getTypeOf } from '@ember/utils';
 import getAssetMapData from 'ember-cli-ifa/utils/get-asset-map-data';
 
 export function initialize(app) {
+  const appRootUrl = app.resolveRegistration('config:environment').rootURL;
   let assetMapFile = getAssetMapData();
+  if (appRootUrl) {
+    assetMapFile = appRootUrl + assetMapFile;
+  }
 
   // This is split out like this, in order to prevent this from being accidentally replaced
   let replacementPath = ['__', 'asset_map_placeholder', '__'].join('');
