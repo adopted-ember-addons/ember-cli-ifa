@@ -127,24 +127,6 @@ var app = new EmberApp(defaults, {
 
 ### inline option
 
-If `inline: true` is specified in config, contents of assetMap file will be inline into index.html. 
-
-```html
-<script>
-...
-
-var __assetMapPlaceholder__ = {
-  "assets": {
-    "assets/assetMap.json": "assets/assetMap-0a0447ba419421fa257963a718324fa8.json",
-    "assets/failed.png": "assets/failed-836936cf32381ff14d191d7b10be9a89.png",
-    "assets/passed.png": "assets/passed-b8506cbc195c8b9db541745aee267c48.png",
-    "assets/tomster-under-construction.png": "assets/tomster-under-construction-da524c8bc9283f759ae640b68db81f24.png"
-  },
-  "prepend": ""
-};
-</script>
-
-...
-```
+If `inline: true` is specified in config, contents of assetMap file will be inline into index.html.
 
 This might save one request to assetMap.json, but will increase overall size of `index.html` file, so use carefully.

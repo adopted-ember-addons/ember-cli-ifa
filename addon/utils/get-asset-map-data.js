@@ -1,4 +1,10 @@
+import $ from 'jquery';
+
 export default function getAssetMapData() {
-  // This placeholder is replaced in the build step
-  return '__asset_map_placeholder__';
+  const assetMapString = $("meta[name='ember-cli-ifa:assetMap']").attr('content');
+  if (!assetMapString) {
+    return;
+  }
+
+  return JSON.parse(decodeURIComponent(assetMapString));
 }
