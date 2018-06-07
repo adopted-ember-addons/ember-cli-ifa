@@ -6,11 +6,24 @@ export default Service.extend({
   map: computed(() => ({})),
   prepend: '/',
 
+  fullMap: computed('map', function() {
+    const map = get(this, 'map');
+    const ret = {};
+
+    const identity = Object.keys(map).forEach(k => {
+      const v = map[k];
+      ret[k] = v;
+      ret[v] = v;
+    });
+
+    return ret;
+  }),
+
   resolve(name) {
-    const map = get(this, 'map') || {};
+    const fullMap = get(this, 'fullMap') || {};
     const prepend = get(this, 'prepend');
     const enabled = get(this, 'enabled');
-    const assetName = enabled ? map[name] : name;
+    const assetName = enabled ? fullMap[name] : name;
 
     return `${prepend}${assetName}`;
   }
