@@ -1,7 +1,5 @@
-import $ from 'jquery';
-
 export default function getAssetMapData() {
-  const assetMapString = $("meta[name='ember-cli-ifa:assetMap']").attr('content');
+  const assetMapString = document.querySelector("meta[name='ember-cli-ifa:assetMap']").content;
   if (!assetMapString) {
     return;
   }
