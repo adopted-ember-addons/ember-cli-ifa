@@ -42,8 +42,14 @@ export function initialize(app) {
         prepend: map.prepend,
         enabled: true
       });
-    }).then(() => {
+    })
+    .then(() => {
       app.register('service:asset-map', AssetMap);
+    })
+    .catch((err) => {
+      console.error('Failed to register service:asset-map', err);
+    })
+    .finally(() => {
       app.advanceReadiness();
     });
   }
