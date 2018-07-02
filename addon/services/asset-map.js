@@ -8,6 +8,7 @@ export default Service.extend({
 
   resolve(name) {
     const map = get(this, 'map') || {};
+    console.log('map', map);
     const prepend = get(this, 'prepend');
     const enabled = get(this, 'enabled');
     const assetName = enabled ? map[name] : name;

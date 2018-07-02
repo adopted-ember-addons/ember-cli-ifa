@@ -3,7 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const DEFAULT_VENDOR_REGEX = /^vendor(-(\w|\d)*)?\.js$/i;
+const SCRIPT_PLACEHOLDER = '<script>var __assetMapPlaceholder__ = \'\';</script>';
+const META_PLACEHOLDER = '<meta property="ifa:placeholder" content="">';
 
 module.exports = {
   name: 'ember-cli-ifa',
@@ -19,7 +20,7 @@ module.exports = {
     // By default, it looks for a `vendor.js` or `vendor-XXXXX.js` file
     // It looks for that file in the `/assets` folder
     let options = app.options['ember-cli-ifa'] || {};
-    this._replacePathRegex = options.replacePathRegex || DEFAULT_VENDOR_REGEX;
+    // this._replacePathRegex = options.replacePathRegex || DEFAULT_VENDOR_REGEX;
   },
 
   treeForFastBoot: function(tree) {
@@ -28,6 +29,8 @@ module.exports = {
   },
 
   postBuild(build) {
+    console.log('postBuild');
+
     this._super.included.apply(this, arguments);
 
     const env = process.env.EMBER_ENV;
@@ -38,6 +41,15 @@ module.exports = {
     }
 
     let fingerprintPrepend = '/';
+    let indexFilePath = build.directory + '/index.html';
+    let testIndexFilePath = build.directory + '/tests/index.html';
+
+    let indexFile = fs.readFileSync(indexFilePath, {encoding: 'utf-8'});
+
+    let testIndexFile;
+    if (fs.existsSync(testIndexFilePath)) {
+      testIndexFile = fs.readFileSync(testIndexFilePath, {encoding: 'utf-8'});
+    }
 
     let files = fs.readdirSync(path.join(build.directory, 'assets'));
     let totalFiles = files.length;
@@ -50,17 +62,18 @@ module.exports = {
       }
     }
 
-    let replacePathRegex = this._replacePathRegex || DEFAULT_VENDOR_REGEX;
-    let vendorJsFileName = null;
-    for (let i = 0; i < totalFiles; i++) {
-      if (replacePathRegex.test(files[i])) {
-        vendorJsFileName = files[i];
-        break;
-      }
-    }
+    // TODO: don't replace anything in vendor.js
+    // let replacePathRegex = this._replacePathRegex || DEFAULT_VENDOR_REGEX;
+    // let vendorJsFileName = null;
+    // for (let i = 0; i < totalFiles; i++) {
+    //   if (replacePathRegex.test(files[i])) {
+    //     vendorJsFileName = files[i];
+    //     break;
+    //   }
+    // }
 
-    let vendorJsFilePath = path.join(build.directory, 'assets', vendorJsFileName);
-    let vendorJsFile = fs.readFileSync(vendorJsFilePath, { encoding: 'utf-8' });
+    // let vendorJsFilePath = path.join(build.directory, 'assets', vendorJsFileName);
+    // let vendorJsFile = fs.readFileSync(vendorJsFilePath, { encoding: 'utf-8' });
 
     // Prepend the URL of the assetMap with the location defined in fingerprint
     // options.
@@ -77,17 +90,55 @@ module.exports = {
     if (!ifaConfig.inline && this._isFastBoot) {
       this.ui.writeLine('When running fastboot, ember-cli-ifa is forced into inline mode.');
     }
-    let inline = ifaConfig.inline || this._isFastBoot;
+    let inline = ifaConfig.inline && !this._isFastBoot;
 
     if (inline && fs.existsSync(assetFileNamePath)) {
       assetMapPlaceholder = fs.readFileSync(assetFileNamePath, { encoding: 'utf-8' });
       assetMapPlaceholder = JSON.stringify(JSON.parse(assetMapPlaceholder));
+
+      let placeholder = '<script>var __assetMapPlaceholder__ = \'\';</script>';
+
+      fs.writeFileSync(indexFilePath, indexFile.replace(SCRIPT_PLACEHOLDER, '<script>var __assetMapPlaceholder__ = \'' + assetMapPlaceholder + '\';</script>'));
+
+      if (testIndexFile) {
+        fs.writeFileSync(testIndexFilePath, testIndexFile.replace(SCRIPT_PLACEHOLDER, '<script>var __assetMapPlaceholder__ = \'' + assetMapPlaceholder + '\';</script>'));
+      }
     } else if (assetFileName) {
-      assetMapPlaceholder = `"${fingerprintPrepend}assets/${assetFileName}"`;
+      assetMapPlaceholder = `${fingerprintPrepend}assets/${assetFileName}`;
+
+      fs.writeFileSync(indexFilePath, indexFile.replace(META_PLACEHOLDER, '<meta property="ifa:placeholder" content="' + assetMapPlaceholder + '">'));
+
+      if (testIndexFile) {
+        fs.writeFileSync(testIndexFilePath, testIndexFile.replace(META_PLACEHOLDER, '<meta property="ifa:placeholder" content="' + assetMapPlaceholder + '">'));
+      }
+    }
+  },
+
+  fastbootConfigTree() {
+    console.log('fastbootConfigTree');
+
+    return {
+      'ember-cli-ifa': {
+        'assetFileName': 'bar'
+      }
+    }
+  },
+
+  contentFor(type, config) {
+    if (!config.ifa || !config.ifa.enabled) {
+      return;
     }
 
-    // When minifiying, '__asset_map_placeholder__' may be re-written into "__asset_map_placeholder__"
-    // So we need to replace both variants
-    fs.writeFileSync(vendorJsFilePath, vendorJsFile.replace(/('|")(__asset_map_placeholder__)('|")/, assetMapPlaceholder));
+    if (type === 'head') {
+      return META_PLACEHOLDER;
+    } else if (type === 'head-footer') {
+      return SCRIPT_PLACEHOLDER;
+    }
+  },
+
+  updateFastBootManifest(manifest) {
+    //  manifest.vendorFiles.unshift('<path to foo.js under dist>');
+
+     return manifest;
   }
 };

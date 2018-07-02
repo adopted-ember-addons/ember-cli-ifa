@@ -65,8 +65,13 @@
     "asset-map"
   ],
   "dependencies": {
-    "ember-cli-babel": "^6.11.0"
+    "ember-cli-babel": "^6.11.0",
+    "ember-fetch": "^3.4.5"
   },
+  "fastbootDependencies": [
+    "path",
+    "fs"
+  ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
   }
