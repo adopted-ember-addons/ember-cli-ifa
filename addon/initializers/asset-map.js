@@ -1,5 +1,4 @@
 import RSVP from 'rsvp';
-import $ from 'jquery';
 import AssetMap from '../services/asset-map';
 import { typeOf as getTypeOf } from '@ember/utils';
 import getAssetMapData from 'ember-cli-ifa/utils/get-asset-map-data';
@@ -25,16 +24,7 @@ export function initialize(app) {
   } else {
     app.deferReadiness();
 
-    let { ajax } = $;
-    const promise = new RSVP.Promise((resolve, reject) => {
-      let options = {
-        type: 'GET',
-        dataType: 'json',
-        success: resolve,
-        error: reject
-      };
-      ajax(assetMapFile, options);
-    });
+    const promise = fetch(assetMapFile).then(response => response.json());
 
     promise.then((map = {}) => {
       AssetMap.reopen({
