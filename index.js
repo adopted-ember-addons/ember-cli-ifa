@@ -76,7 +76,11 @@ module.exports = {
       assetMap = `${fingerprintPrepend}assets/${assetFileName}`;
     }
 
-    replacePlaceholder(path.join(build.directory, 'index.html'), assetMap);
-    replacePlaceholder(path.join(build.directory, 'tests/index.html'), assetMap);
+    let filePath = path.join(build.directory, 'index.html');
+    replacePlaceholder(filePath, assetMap);
+    filePath = path.join(build.directory, 'tests/index.html');  // May not exist, eg prod build
+    if(fs.existsSync(filePath)) {
+      replacePlaceholder(filePath, assetMap);
+    }
   }
 };
