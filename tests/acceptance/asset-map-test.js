@@ -7,6 +7,8 @@ module('Acceptance | asset map', function(hooks) {
   setupApplicationTest(hooks);
 
   test('asset map is correctly built', async function(assert) {
+    assert.expect(6);
+
     await visit('/');
 
     assert.equal(currentURL(), '/');
@@ -18,5 +20,6 @@ module('Acceptance | asset map', function(hooks) {
     let imgPaths = [].concat(...findAll('img')).map((img) => img.getAttribute('src'));
     assert.equal(imgPaths[0], imgPaths[1], 'images 1 & 2 have equal paths');
     assert.equal(imgPaths[0], imgPaths[2], 'images 1 & 3 have equal paths');
+    assert.equal(imgPaths[0], imgPaths[3], 'images 1 & 4 have equal paths');
   });
 });
