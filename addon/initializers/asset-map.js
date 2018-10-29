@@ -6,10 +6,7 @@ import getAssetMapData from 'ember-cli-ifa/utils/get-asset-map-data';
 export function initialize(app) {
   let assetMapFile = getAssetMapData();
 
-  // This is split out like this, in order to prevent this from being accidentally replaced
-  let replacementPath = ['__', 'asset_map_placeholder', '__'].join('');
-
-  if (!assetMapFile || assetMapFile === replacementPath) {
+  if (!assetMapFile) {
     app.register('service:asset-map', AssetMap);
     return;
   }

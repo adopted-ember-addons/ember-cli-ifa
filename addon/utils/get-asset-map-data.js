@@ -1,4 +1,8 @@
 export default function getAssetMapData() {
-  // This placeholder is replaced in the build step
-  return '__asset_map_placeholder__';
+  const assetMapString = document.querySelector("meta[name='ember-cli-ifa:assetMap']").content;
+  if (!assetMapString) {
+    return;
+  }
+
+  return JSON.parse(decodeURIComponent(assetMapString));
 }
