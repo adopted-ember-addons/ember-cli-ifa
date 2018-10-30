@@ -1,4 +1,4 @@
-import RSVP from 'rsvp';
+import fetch from 'fetch';
 import AssetMap from '../services/asset-map';
 import { typeOf as getTypeOf } from '@ember/utils';
 import getAssetMapData from 'ember-cli-ifa/utils/get-asset-map-data';
