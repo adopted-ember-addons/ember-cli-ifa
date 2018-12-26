@@ -19,6 +19,7 @@ export function initialize(app) {
     });
     app.register('service:asset-map', AssetMap);
   } else {
+    console.log('deferring readiness');
     app.deferReadiness();
 
     const promise = fetch(assetMapFile).then(response => response.json());
