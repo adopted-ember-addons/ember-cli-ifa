@@ -20,8 +20,8 @@ export default Service.extend({
   }),
 
   resolve(name) {
+    debugger;
     const fullMap = get(this, 'fullMap') || {};
-    console.log('fullMap', fullMap);
     const prepend = get(this, 'prepend');
     const enabled = get(this, 'enabled');
     const assetName = enabled ? fullMap[name] : name;
