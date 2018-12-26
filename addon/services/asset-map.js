@@ -24,7 +24,6 @@ export default Service.extend({
     const prepend = get(this, 'prepend');
     const enabled = get(this, 'enabled');
     const assetName = enabled ? fullMap[name] : name;
-    console.log({ name, fullMap, prepend, enabled, assetName });
     return `${prepend}${assetName}`;
   }
 });
