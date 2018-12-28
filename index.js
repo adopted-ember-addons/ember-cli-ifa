@@ -11,6 +11,13 @@ function replacePlaceholder(filePath, assetMap) {
   fs.writeFileSync(filePath, fileBody.replace(MetaPlaceholder, assetMapString));
 }
 
+const getAllFiles = dir =>
+  fs.readdirSync(dir).reduce((files, file) => {
+    const name = path.join(dir, file);
+    const isDirectory = fs.statSync(name).isDirectory();
+    return isDirectory ? [...files, ...getAllFiles(name)] : [...files, name];
+  }, []);
+
 module.exports = {
   name: 'ember-cli-ifa',
 
@@ -70,15 +77,17 @@ module.exports = {
     const inline = ifaConfig.inline || this._isFastBoot;
 
     let assetMap;
+
     if (inline && fs.existsSync(assetFileNamePath)) {
       assetMap = JSON.parse(fs.readFileSync(assetFileNamePath, { encoding: 'utf-8' }));
     } else if (assetFileName) {
       assetMap = `${fingerprintPrepend}assets/${assetFileName}`;
     }
 
-    replacePlaceholder(path.join(build.directory, 'index.html'), assetMap);
-    if (fs.existsSync(path.join(build.directory, 'tests/index.html'))) {
-      replacePlaceholder(path.join(build.directory, 'tests/index.html'), assetMap);
-    }
+    getAllFiles(build.directory).filter((name) => {
+      return /.+\.html/.test(name);
+    }).forEach((fileName) => {
+      replacePlaceholder(fileName, assetMap);
+    });
   }
 };
