@@ -76,7 +76,13 @@ module.exports = {
       assetMap = `${fingerprintPrepend}assets/${assetFileName}`;
     }
 
-    replacePlaceholder(path.join(build.directory, 'index.html'), assetMap);
-    replacePlaceholder(path.join(build.directory, 'tests/index.html'), assetMap);
+    const indexHtmlPath = path.join(build.directory, 'index.html');
+    const testsIndexHtmlPath = path.join(build.directory, 'tests/index.html');
+
+    replacePlaceholder(indexHtmlPath, assetMap);
+    if (fs.existsSync(testsIndexHtmlPath)) {
+      // There are no test related assets in prod build
+      replacePlaceholder(testsIndexHtmlPath, assetMap);
+    }
   }
 };
