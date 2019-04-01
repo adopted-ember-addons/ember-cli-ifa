@@ -10,7 +10,7 @@ export default Service.extend({
     const map = get(this, 'map');
     const ret = {};
 
-    const identity = Object.keys(map).forEach(k => {
+    Object.keys(map).forEach(k => {
       const v = map[k];
       ret[k] = v;
       ret[v] = v;
@@ -23,7 +23,9 @@ export default Service.extend({
     const fullMap = get(this, 'fullMap') || {};
     const prepend = get(this, 'prepend');
     const enabled = get(this, 'enabled');
-    const assetName = enabled ? fullMap[name] : name;
+    const assetName = enabled ?
+      (fullMap[name] || name) :
+      name;
 
     return `${prepend}${assetName}`;
   }
