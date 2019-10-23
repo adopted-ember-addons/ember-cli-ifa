@@ -1,3 +1,27 @@
+## v0.8.0 (2019-10-23)
+
+#### :boom: Breaking Change
+* Update minimum supported Node.js version to 10
+
+#### :rocket: Enhancement
+* [#40](https://github.com/RuslanZavacky/ember-cli-ifa/pull/40) Use HTML meta to store asset map information ([@krallin](https://github.com/krallin))
+* [#41](https://github.com/RuslanZavacky/ember-cli-ifa/pull/41) Passthrough fingerprinted paths ([@krallin](https://github.com/krallin))
+* [#43](https://github.com/RuslanZavacky/ember-cli-ifa/pull/43) Remove jQuery ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* [#54](https://github.com/RuslanZavacky/ember-cli-ifa/pull/54) Ensure that we don't write `undefined` into the `<meta>` element value ([@Turbo87](https://github.com/Turbo87))
+* [#51](https://github.com/RuslanZavacky/ember-cli-ifa/pull/51) Fall back to name in resolve ([@mydea](https://github.com/mydea))
+* [#53](https://github.com/RuslanZavacky/ember-cli-ifa/pull/53) Fix broken `test/index.html` mutation ([@Turbo87](https://github.com/Turbo87))
+* [#42](https://github.com/RuslanZavacky/ember-cli-ifa/pull/42) Catch errors if asset-map fails to load ([@headquarters](https://github.com/headquarters))
+
+#### Committers: 5
+- Francesco Novy ([@mydea](https://github.com/mydea))
+- L. Preston Sego III ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+- Michael Head ([@headquarters](https://github.com/headquarters))
+- Thomas Orozco ([@krallin](https://github.com/krallin))
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+
+
 # 0.7.0 
 - [ENHANCEMENT] Upgrade to Ember 3.0 (@mydea)
 - [ENHANCEMENT] Tests passing (@mydea)
