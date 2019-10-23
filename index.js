@@ -77,6 +77,10 @@ module.exports = {
     }
 
     replacePlaceholder(path.join(build.directory, 'index.html'), assetMap);
-    replacePlaceholder(path.join(build.directory, 'tests/index.html'), assetMap);
+
+    let testIndexPath = path.join(build.directory, 'tests/index.html');
+    if (fs.existsSync(testIndexPath)) {
+      replacePlaceholder(testIndexPath, assetMap);
+    }
   }
 };
