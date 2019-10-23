@@ -6,7 +6,7 @@ const path = require('path');
 const MetaPlaceholder = '__ember-cli-ifa__AssetMapPlaceholder__';
 
 function replacePlaceholder(filePath, assetMap) {
-  const assetMapString = encodeURIComponent(JSON.stringify(assetMap));
+  const assetMapString = assetMap ? encodeURIComponent(JSON.stringify(assetMap)) : '';
   const fileBody = fs.readFileSync(filePath, { encoding: 'utf-8' });
   fs.writeFileSync(filePath, fileBody.replace(MetaPlaceholder, assetMapString));
 }
