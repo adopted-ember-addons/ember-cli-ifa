@@ -1,19 +1,27 @@
 /bower_components
 /config/ember-try.js
+fastboot-server/
+fastboot-tests/
 /dist
 /tests
 /tmp
 **/.gitkeep
+*.tgz
 .bowerrc
+.codeclimate.yml
 .editorconfig
 .ember-cli
+.eslintignore
 .eslintrc.js
 .gitignore
-.watchmanconfig
+.npmrc
 .travis.yml
-bower.json
+.watchmanconfig
+.yarnrc
 ember-cli-build.js
+run-fastboot-tests.js
 testem.js
+yarn.lock
 
 # ember-try
 .node_modules.ember-try/
