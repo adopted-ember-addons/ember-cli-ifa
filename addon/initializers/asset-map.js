@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import AssetMap from '../services/asset-map';
 import { typeOf as getTypeOf } from '@ember/utils';
 import getAssetMapData from 'ember-cli-ifa/utils/get-asset-map-data';
@@ -34,6 +33,7 @@ export function initialize(app) {
       app.register('service:asset-map', AssetMap);
     })
     .catch((err) => {
+      // eslint-disable-next-line no-console
       console.error('Failed to register service:asset-map', err);
     })
     .finally(() => {
