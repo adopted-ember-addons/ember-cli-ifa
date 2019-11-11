@@ -31,6 +31,20 @@ module.exports = {
     return `<meta name="ember-cli-ifa:assetMap" content="${MetaPlaceholder}">`;
   },
 
+  /**
+   * By default, during runtime the asset-map service reads the asset map
+   * information from a meta tag on the index.html. As we do not have access to
+   * global `document` when running in fastboot, we need to implement a
+   * different way to access this asset-map information. See
+   * `get-asset-map-data` where we require the `asset-map` module taht is
+   * generated in the postBuild() below.
+   */
+  updateFastBootManifest(manifest) {
+     manifest.vendorFiles.push('assets/assetMap.js');
+
+     return manifest;
+  },
+
   postBuild(build) {
     this._super.included.apply(this, arguments);
 
@@ -71,7 +85,20 @@ module.exports = {
 
     let assetMap;
     if (inline && fs.existsSync(assetFileNamePath)) {
-      assetMap = JSON.parse(fs.readFileSync(assetFileNamePath, { encoding: 'utf-8' }));
+      let assetMapContent = fs.readFileSync(assetFileNamePath, { encoding: 'utf-8' });
+      assetMap = JSON.parse(assetMapContent);
+
+      if(this._isFastBoot) {
+        const assetModulePath = assetFileNamePath.replace(/\.json$/, '.js');
+
+        fs.writeFileSync(assetModulePath, `define('asset-map', [], function () {
+          return {
+            'default': ${assetMapContent},
+            __esModule: true,
+          };
+        });`)
+      }
+
     } else if (assetFileName) {
       assetMap = `${fingerprintPrepend}assets/${assetFileName}`;
     }
