@@ -20,6 +20,11 @@ module.exports = {
 
   treeForFastBoot(tree) {
     this._isFastBoot = true;
+
+    if (this.project !== this.parent) {
+      this.ui.writeLine('ember-cli-ifa currently only supports being a top-level dependency! If you are seeing this message please open an issue on https://github.com/RuslanZavacky/ember-cli-ifa/issues');
+    }
+
     return tree;
   },
 
