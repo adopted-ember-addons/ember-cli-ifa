@@ -96,7 +96,7 @@ module.exports = {
       if(this._isFastBoot) {
         const assetModulePath = assetFileNamePath.replace(/\.json$/, '.js');
 
-        fs.writeFileSync(assetModulePath, `define('asset-map', [], function () {
+        fs.writeFileSync(assetModulePath, `define('ember-cli-ifa/fastboot-asset-map', [], function () {
           return {
             'default': ${assetMapContent},
             __esModule: true,

@@ -2,7 +2,7 @@ import require from 'require';
 
 export default function getAssetMapData() {
   if(typeof FastBoot !== "undefined") {
-    let assetMap =  require('asset-map');
+    let assetMap = require('ember-cli-ifa/fastboot-asset-map');
     return assetMap.default;
   }
 
