@@ -17,7 +17,7 @@ module('Acceptance | asset map', function(hooks) {
     assert.equal(get(assetMapService, 'enabled'), true, 'asset map is enabled');
     assert.equal(get(assetMapService, 'prepend'), '', 'prepend is an empty string');
 
-    let imgPaths = [].concat(...findAll('img')).map((img) => img.getAttribute('src'));
+    let imgPaths = [].concat(...findAll('img')).map(img => img.getAttribute('src'));
     assert.equal(imgPaths[0], imgPaths[1], 'images 1 & 2 have equal paths');
     assert.equal(imgPaths[0], imgPaths[2], 'images 1 & 3 have equal paths');
     assert.equal(imgPaths[0], imgPaths[3], 'images 1 & 4 have equal paths');

@@ -22,7 +22,9 @@ module.exports = {
     this._isFastBoot = true;
 
     if (this.project !== this.parent) {
-      this.ui.writeLine('ember-cli-ifa currently only supports being a top-level dependency! If you are seeing this message please open an issue on https://github.com/RuslanZavacky/ember-cli-ifa/issues');
+      this.ui.writeLine(
+        'ember-cli-ifa currently only supports being a top-level dependency! If you are seeing this message please open an issue on https://github.com/RuslanZavacky/ember-cli-ifa/issues'
+      );
     }
 
     return tree;
@@ -45,9 +47,9 @@ module.exports = {
    * generated in the postBuild() below.
    */
   updateFastBootManifest(manifest) {
-     manifest.vendorFiles.push('assets/assetMap.js');
+    manifest.vendorFiles.push('assets/assetMap.js');
 
-     return manifest;
+    return manifest;
   },
 
   postBuild(build) {
@@ -93,17 +95,19 @@ module.exports = {
       let assetMapContent = fs.readFileSync(assetFileNamePath, { encoding: 'utf-8' });
       assetMap = JSON.parse(assetMapContent);
 
-      if(this._isFastBoot) {
+      if (this._isFastBoot) {
         const assetModulePath = assetFileNamePath.replace(/\.json$/, '.js');
 
-        fs.writeFileSync(assetModulePath, `define('ember-cli-ifa/fastboot-asset-map', [], function () {
+        fs.writeFileSync(
+          assetModulePath,
+          `define('ember-cli-ifa/fastboot-asset-map', [], function () {
           return {
             'default': ${assetMapContent},
             __esModule: true,
           };
-        });`)
+        });`
+        );
       }
-
     } else if (assetFileName) {
       assetMap = `${fingerprintPrepend}assets/${assetFileName}`;
     }
@@ -114,5 +118,5 @@ module.exports = {
     if (fs.existsSync(testIndexPath)) {
       replacePlaceholder(testIndexPath, assetMap);
     }
-  }
+  },
 };

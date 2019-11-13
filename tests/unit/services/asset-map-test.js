@@ -9,7 +9,7 @@ module('Unit | Service | asset-map', function(hooks) {
     test('it works with an existing name', function(assert) {
       let service = this.owner.lookup('service:asset-map');
       set(service, 'map', {
-        'my/file.png': 'my/file-1234.png'
+        'my/file.png': 'my/file-1234.png',
       });
 
       let result = service.resolve('my/file.png');
@@ -19,7 +19,7 @@ module('Unit | Service | asset-map', function(hooks) {
     test('it works with an existing name & prepend', function(assert) {
       let service = this.owner.lookup('service:asset-map');
       set(service, 'map', {
-        'my/file.png': 'my/file-1234.png'
+        'my/file.png': 'my/file-1234.png',
       });
       set(service, 'prepend', 'https://cdn.com/');
 
@@ -30,7 +30,7 @@ module('Unit | Service | asset-map', function(hooks) {
     test('it works when disabled', function(assert) {
       let service = this.owner.lookup('service:asset-map');
       set(service, 'map', {
-        'my/file.png': 'my/file-1234.png'
+        'my/file.png': 'my/file-1234.png',
       });
       set(service, 'enabled', false);
 
@@ -41,7 +41,7 @@ module('Unit | Service | asset-map', function(hooks) {
     test('it works with an existing name & prepend when disabled', function(assert) {
       let service = this.owner.lookup('service:asset-map');
       set(service, 'map', {
-        'my/file.png': 'my/file-1234.png'
+        'my/file.png': 'my/file-1234.png',
       });
       set(service, 'prepend', 'https://cdn.com/');
       set(service, 'enabled', false);
@@ -53,7 +53,7 @@ module('Unit | Service | asset-map', function(hooks) {
     test('it works with a non-existing name', function(assert) {
       let service = this.owner.lookup('service:asset-map');
       set(service, 'map', {
-        'my/file.png': 'my/file-1234.png'
+        'my/file.png': 'my/file-1234.png',
       });
 
       let result = service.resolve('my/file2.png');
@@ -63,7 +63,7 @@ module('Unit | Service | asset-map', function(hooks) {
     test('it works with a non-existing name & prepend', function(assert) {
       let service = this.owner.lookup('service:asset-map');
       set(service, 'map', {
-        'my/file.png': 'my/file-1234.png'
+        'my/file.png': 'my/file-1234.png',
       });
       set(service, 'prepend', 'https://cdn.com/');
 
@@ -72,4 +72,3 @@ module('Unit | Service | asset-map', function(hooks) {
     });
   });
 });
-

@@ -10,9 +10,10 @@ var glob = require('glob');
 var root = 'fastboot-tests/';
 
 function addFiles(files) {
-  glob.sync(root + files)
+  glob
+    .sync(root + files)
     .map(function(name) {
-      return "./" + name.substring(0, name.length - 3);
+      return './' + name.substring(0, name.length - 3);
     })
     .forEach(require);
 }
