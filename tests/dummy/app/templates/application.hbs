@@ -1,27 +1,27 @@
 <div style="display: flex; flex: 1 1 auto; align-items: center; justify-content: center;">
   <div>
-    <img style="max-height: 150px;" src="assets/tomster-under-construction.png" />
+    <img data-test-img-template-replace style="max-height: 150px;" src="assets/tomster-under-construction.png" />
     <div style="display: flex; justify-content: center;">
       Template replace
     </div>
   </div>
 
   <div>
-    <img style="max-height: 150px;" src={{imagePath}} />
+    <img data-test-img-asset-map-service style="max-height: 150px;" src={{imagePath}} />
     <div style="display: flex; justify-content: center;">
       Asset Map Service
     </div>
   </div>
 
   <div>
-    <img style="max-height: 150px;" src={{asset-map (concat image '.png')}} />
+    <img data-test-img-asset-map-helper style="max-height: 150px;" src={{asset-map (concat image '.png')}} />
     <div style="display: flex; justify-content: center;">
       Asset Map Helper
     </div>
   </div>
 
   <div>
-    <img style="max-height: 150px;" src={{asset-map 'assets/tomster-under-construction.png'}} />
+    <img data-test-img-asset-map-helper-string-path style="max-height: 150px;" src={{asset-map 'assets/tomster-under-construction.png'}} />
     <div style="display: flex; justify-content: center;">
       Asset Map Helper (with string path)
     </div>

@@ -58,7 +58,8 @@
     "fastboot-app-server": "^1.1.0",
     "jsdom": "^11.6.2",
     "loader.js": "^4.6.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "qunit-dom": "^0.9.1"
   },
   "keywords": [
     "ember-addon",
