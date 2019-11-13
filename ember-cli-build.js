@@ -8,8 +8,8 @@ module.exports = function(defaults) {
       enabled: true,
       extensions: ['png'],
       generateAssetMap: true,
-      fingerprintAssetMap: false
-    }
+      fingerprintAssetMap: false,
+    },
   });
 
   /*
