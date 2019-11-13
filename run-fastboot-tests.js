@@ -1,4 +1,4 @@
-/* global global, QUnit */
+/* global QUnit */
 /* eslint-env node */
 global.QUnit = require('qunitjs');
 
