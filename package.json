@@ -18,7 +18,7 @@
     "url": "http://github.com/RuslanZavacky/ember-cli-ifa.git"
   },
   "engines": {
-    "node": ">= 6"
+    "node": "8.* || 10.* || >= 12.*"
   },
   "author": {
     "name": "Ruslan Zavacky",
