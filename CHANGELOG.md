@@ -1,3 +1,23 @@
+# Changelog
+
+## v0.8.1 (2019-11-14)
+
+#### :bug: Bug Fix
+* [#57](https://github.com/RuslanZavacky/ember-cli-ifa/pull/57) Fix FastBoot support ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* [#73](https://github.com/RuslanZavacky/ember-cli-ifa/pull/73) Modernise and fix fastboot tests ([@Turbo87](https://github.com/Turbo87))
+* [#68](https://github.com/RuslanZavacky/ember-cli-ifa/pull/68) Simplify acceptance test ([@Turbo87](https://github.com/Turbo87))
+* [#65](https://github.com/RuslanZavacky/ember-cli-ifa/pull/65) Use prettier to format JS code ([@Turbo87](https://github.com/Turbo87))
+* [#64](https://github.com/RuslanZavacky/ember-cli-ifa/pull/64) Add dependabot config file ([@Turbo87](https://github.com/Turbo87))
+* [#58](https://github.com/RuslanZavacky/ember-cli-ifa/pull/58) Replace `ember-cli-eslint` with regular ESLint ([@Turbo87](https://github.com/Turbo87))
+* [#55](https://github.com/RuslanZavacky/ember-cli-ifa/pull/55) Update `.npmignore` file ([@Turbo87](https://github.com/Turbo87))
+
+#### Committers: 2
+- Chris Manson ([@mansona](https://github.com/mansona))
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+
+
 ## v0.8.0 (2019-10-23)
 
 #### :boom: Breaking Change
