@@ -9,7 +9,7 @@ dynamically reference fingerprinted assets.
 **When to use this addon?**
 
 1. If you have dynamic asset file names returned from API and/or you build paths based on several properties.
-1. If you can't put your asset filemames into css or to have path as static in your .js files.
+1. If you can't put your asset file names into css or to have path as static in your .js files.
 1. If you build your image/asset paths in a dynamic way, eg.
 ```js
 imagePath: computed(function() {
