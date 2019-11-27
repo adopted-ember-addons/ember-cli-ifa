@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.9.0 (2019-11-27)
+
+#### :boom: Breaking Change
+* [#81](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/81) Drop support for Node 6 ([@Turbo87](https://github.com/Turbo87))
+
+#### :rocket: Enhancement
+* [#100](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/100) Show warning for missing `<meta>` tag ([@Turbo87](https://github.com/Turbo87))
+
+#### :memo: Documentation
+* [#99](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/99) README: Fix spelling mistake ([@Alonski](https://github.com/Alonski))
+
+#### :house: Internal
+* [#80](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/80) Remove unused dependencies ([@Turbo87](https://github.com/Turbo87))
+* [#79](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/79) Adjust `.npmignore` file ([@Turbo87](https://github.com/Turbo87))
+
+#### Committers: 2
+- Alon Bukai ([@Alonski](https://github.com/Alonski))
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+
+
 ## v0.8.1 (2019-11-14)
 
 #### :bug: Bug Fix
