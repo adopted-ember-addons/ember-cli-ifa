@@ -13,9 +13,7 @@ export default function getAssetMapData() {
   }
 
   const assetMapString = metaTag.content;
-  if (!assetMapString) {
-    return;
+  if (assetMapString) {
+    return JSON.parse(decodeURIComponent(assetMapString));
   }
-
-  return JSON.parse(decodeURIComponent(assetMapString));
 }
