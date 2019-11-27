@@ -6,7 +6,13 @@ export default function getAssetMapData() {
     return assetMap.default;
   }
 
-  const assetMapString = document.querySelector("meta[name='ember-cli-ifa:assetMap']").content;
+  let metaTag = document.querySelector("meta[name='ember-cli-ifa:assetMap']");
+  if (!metaTag) {
+    console.warn('<meta name="ember-cli-ifa:assetMap"> tag is missing.');
+    return;
+  }
+
+  const assetMapString = metaTag.content;
   if (!assetMapString) {
     return;
   }
