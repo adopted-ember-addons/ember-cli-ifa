@@ -19,7 +19,10 @@ export function initialize(app) {
     });
     app.register('service:asset-map', AssetMap);
   } else {
-    app.deferReadiness();
+    
+    if (typeof app.deferReadiness === "function") {
+      app.deferReadiness();
+    }
 
     const promise = fetch(assetMapFile).then(response => response.json());
 
@@ -37,7 +40,9 @@ export function initialize(app) {
       console.error('Failed to register service:asset-map', err);
     })
     .finally(() => {
-      app.advanceReadiness();
+      if (typeof app.advanceReadiness === "function") {
+        app.advanceReadiness();
+      }
     });
   }
 }
