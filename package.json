@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-ifa",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Inject fingerprinted assetMap.json file into your app and provide initializer, service, and helper to dynamically reference fingerprinted assets.",
   "directories": {
     "doc": "doc",
