@@ -35,14 +35,12 @@ export function initialize(app) {
     })
     .then(() => {
       app.register('service:asset-map', AssetMap);
-    })
-    .catch((err) => {
-      console.error('Failed to register service:asset-map', err);
-    })
-    .finally(() => {
       if (typeof app.advanceReadiness === "function") {
         app.advanceReadiness();
       }
+    })
+    .catch((err) => {
+      console.error('Failed to register service:asset-map', err);
     });
   }
 }
