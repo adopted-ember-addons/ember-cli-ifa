@@ -41,6 +41,9 @@ export function initialize(app) {
     })
     .catch((err) => {
       console.error('Failed to register service:asset-map', err);
+      if (typeof app.advanceReadiness === "function") {
+        app.advanceReadiness();
+      }
     });
   }
 }
