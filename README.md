@@ -39,7 +39,7 @@ module.exports = function(environment) {
   };
 ```
 
-In case you use s3 and manifest module for ember-cli-deploy, update there configurations in `config/deploy.js`
+In case you use s3 and manifest module for ember-cli-deploy, update their configurations in `config/deploy.js`
 to include `json` as a valid file.
 
 ```javascript
@@ -87,7 +87,7 @@ If `name` is `tomster-under-construction`:
 <img src={{asset-map (concat "assets/" name ".png")}} />
 ```
 
-then it will generate something like `assets/tomster-under-construction-da524c8bc9283f759ae640b68db81f24.png` base on assetMap.json.
+then it will generate something like `assets/tomster-under-construction-da524c8bc9283f759ae640b68db81f24.png` based on assetMap.json.
 
 ### asset-map service
 
@@ -127,6 +127,6 @@ var app = new EmberApp(defaults, {
 
 ### inline option
 
-If `inline: true` is specified in config, contents of assetMap file will be inline into index.html.
+If `inline: true` is specified in the config, contents of assetMap file will be inline into index.html.
 
 This might save one request to assetMap.json, but will increase overall size of `index.html` file, so use carefully.
