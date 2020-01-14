@@ -2,7 +2,7 @@ import RSVP from 'rsvp';
 import AssetMap from '../services/asset-map';
 import { typeOf as getTypeOf } from '@ember/utils';
 import getAssetMapData from 'ember-cli-ifa/utils/get-asset-map-data';
-import fetch from 'ember-fetch';
+import fetch from 'fetch';
 
 export function initialize(app) {
   let assetMapFile = getAssetMapData();
