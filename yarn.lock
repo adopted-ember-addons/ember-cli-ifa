@@ -4010,10 +4010,10 @@ ember-cli-dependency-checker@^3.2.0:
     resolve "^1.5.0"
     semver "^5.3.0"
 
-ember-cli-fastboot-testing@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/ember-cli-fastboot-testing/-/ember-cli-fastboot-testing-0.2.3.tgz#ae26cc9b294801e02282133489e7efcc48bfb94c"
-  integrity sha512-rwvlkjYKNW0WMcJpBO7rHzWQDuG3FHng6cFlLnLN62ao1YZTj11oAd48Af8SWX0pe/21UQuASlDu1qZd7g3F0A==
+ember-cli-fastboot-testing@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/ember-cli-fastboot-testing/-/ember-cli-fastboot-testing-0.2.4.tgz#839fa74e237eaa304ae6b3d90f243119730ca6b8"
+  integrity sha512-ZYOupkNzIty9lrsYvoZ3VK4LfgTs/KWTuuPRqyifdA5A8SWtIoh0NHEkVe/b5bcXUJR97I34meEGoN/lHtFz4Q==
   dependencies:
     body-parser "^1.18.3"
     ember-auto-import "^1.2.15"
