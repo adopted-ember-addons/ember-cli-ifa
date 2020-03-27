@@ -43,11 +43,11 @@ module.exports = {
   },
 
   /**
-   * By default, during runtime the asset-map service reads the asset map
+   * By default, during runtime, the asset-map service reads the asset map
    * information from a meta tag on the index.html. As we do not have access to
    * global `document` when running in fastboot, we need to implement a
    * different way to access this asset-map information. See
-   * `get-asset-map-data` where we require the `asset-map` module taht is
+   * `get-asset-map-data` where we require the `asset-map` module that is
    * generated in the postBuild() below.
    */
   updateFastBootManifest(manifest) {
