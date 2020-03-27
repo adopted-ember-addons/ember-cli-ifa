@@ -35,6 +35,10 @@ module.exports = {
       return;
     }
 
+    if (!this._config().enabled) {
+      return '<meta name="ember-cli-ifa:assetMap">';
+    }
+
     return `<meta name="ember-cli-ifa:assetMap" content="${MetaPlaceholder}">`;
   },
 
@@ -55,8 +59,7 @@ module.exports = {
   postBuild(build) {
     this._super.included.apply(this, arguments);
 
-    const env = process.env.EMBER_ENV;
-    const ifaConfig = this.project.config(env).ifa;
+    const ifaConfig = this._config();
 
     if (!ifaConfig.enabled) {
       return;
@@ -118,5 +121,10 @@ module.exports = {
     if (fs.existsSync(testIndexPath)) {
       replacePlaceholder(testIndexPath, assetMap);
     }
+  },
+
+  _config() {
+    const env = process.env.EMBER_ENV;
+    return this.project.config(env).ifa;
   },
 };
