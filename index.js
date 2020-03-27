@@ -35,6 +35,10 @@ module.exports = {
       return;
     }
 
+    if (!this._config().enabled) {
+      return '<meta name="ember-cli-ifa:assetMap">';
+    }
+
     return `<meta name="ember-cli-ifa:assetMap" content="${MetaPlaceholder}">`;
   },
 
@@ -55,10 +59,7 @@ module.exports = {
   postBuild(build) {
     this._super.included.apply(this, arguments);
 
-    const env = process.env.EMBER_ENV;
-    const ifaConfig = this.project.config(env).ifa;
-
-    if (!ifaConfig.enabled) {
+    if (!this._config().enabled) {
       return;
     }
 
@@ -85,10 +86,10 @@ module.exports = {
 
     // When using fastboot, always use the inline form
     // As ajax is not so easily possible there
-    if (!ifaConfig.inline && this._isFastBoot) {
+    if (!this._config().inline && this._isFastBoot) {
       this.ui.writeLine('When running fastboot, ember-cli-ifa is forced into inline mode.');
     }
-    const inline = ifaConfig.inline || this._isFastBoot;
+    const inline = this._config().inline || this._isFastBoot;
 
     let assetMap;
     if (inline && fs.existsSync(assetFileNamePath)) {
@@ -118,5 +119,10 @@ module.exports = {
     if (fs.existsSync(testIndexPath)) {
       replacePlaceholder(testIndexPath, assetMap);
     }
+  },
+
+  _config() {
+    const env = process.env.EMBER_ENV;
+    return this.project.config(env).ifa;
   },
 };
