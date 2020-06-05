@@ -7,7 +7,7 @@ export default Controller.extend({
 
   image: 'assets/tomster-under-construction',
 
-  imagePath: computed(function() {
-    return this.get('assetMap').resolve(`${this.get('image')}.png`);
+  imagePath: computed('image', function() {
+    return this.assetMap.resolve(`${this.image}.png`);
   }),
 });
