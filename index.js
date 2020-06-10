@@ -35,15 +35,19 @@ module.exports = {
       return;
     }
 
+    if (!this._config().enabled) {
+      return '<meta name="ember-cli-ifa:assetMap">';
+    }
+
     return `<meta name="ember-cli-ifa:assetMap" content="${MetaPlaceholder}">`;
   },
 
   /**
-   * By default, during runtime the asset-map service reads the asset map
+   * By default, during runtime, the asset-map service reads the asset map
    * information from a meta tag on the index.html. As we do not have access to
    * global `document` when running in fastboot, we need to implement a
    * different way to access this asset-map information. See
-   * `get-asset-map-data` where we require the `asset-map` module taht is
+   * `get-asset-map-data` where we require the `asset-map` module that is
    * generated in the postBuild() below.
    */
   updateFastBootManifest(manifest) {
@@ -55,8 +59,7 @@ module.exports = {
   postBuild(build) {
     this._super.included.apply(this, arguments);
 
-    const env = process.env.EMBER_ENV;
-    const ifaConfig = this.project.config(env).ifa;
+    const ifaConfig = this._config();
 
     if (!ifaConfig.enabled) {
       return;
@@ -118,5 +121,10 @@ module.exports = {
     if (fs.existsSync(testIndexPath)) {
       replacePlaceholder(testIndexPath, assetMap);
     }
+  },
+
+  _config() {
+    const env = process.env.EMBER_ENV;
+    return this.project.config(env).ifa;
   },
 };
