@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.10.0 (2020-06-10)
+
+#### :boom: Breaking Change
+* Update minimum supported Node.js version to 10
+
+#### :bug: Bug Fix
+* [#176](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/176) Fix error - Inject empty meta tag when addon not enabled ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* [#101](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/101) Simplify `assetMapString` condition ([@Turbo87](https://github.com/Turbo87))
+* [#177](https://github.com/adopted-ember-addons/ember-cli-ifa/pull/177) Update using ember-cli-update ([@mansona](https://github.com/mansona))
+
+#### Committers: 3
+- Chris Manson ([@mansona](https://github.com/mansona))
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+- abhilashlr ([@abhilashlr](https://github.com/abhilashlr))
+
 ## v0.9.0 (2019-11-27)
 
 #### :boom: Breaking Change
