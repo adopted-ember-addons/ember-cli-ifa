@@ -29,7 +29,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@glimmer/tracking": "^1.0.2",
+    "@glimmer/tracking": "^1.0.3",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "^3.23.0",
