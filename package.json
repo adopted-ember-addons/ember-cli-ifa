@@ -67,7 +67,7 @@
     "asset-map"
   ],
   "dependencies": {
-    "ember-cli-babel": "^7.26.3"
+    "ember-cli-babel": "^7.26.4"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
