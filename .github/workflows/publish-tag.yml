@@ -9,10 +9,6 @@
         "NPM_TOKEN": "${{ secrets.npm_token }}"
       "name": "npm"
       "run": "bash ./ci/npm.sh"
-    - "name": "yarn"
-      "run": "yarn --frozen-lockfile || yarn --frozen-lockfile"
-    - "name": "build"
-      "run": "yarn build"
     - "name": "publish"
       "run": "bash ./ci/publish.sh"
     "timeout-minutes": 30

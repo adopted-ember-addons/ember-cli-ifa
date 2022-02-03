@@ -11,10 +11,6 @@
         "NPM_TOKEN": "${{ secrets.npm_token }}"
       "name": "npm"
       "run": "bash ./ci/npm.sh"
-    - "name": "yarn"
-      "run": "yarn --frozen-lockfile || yarn --frozen-lockfile"
-    - "name": "build"
-      "run": "yarn build"
     - "env":
         "PR_NUMBER": "${{ github.event.number }}"
       "name": "publish"
