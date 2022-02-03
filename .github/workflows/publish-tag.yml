@@ -1,5 +1,7 @@
 "jobs":
   "publish":
+    "container":
+      "image": "node:14-slim"
     "runs-on":
     - "ubuntu-latest"
     "steps":
